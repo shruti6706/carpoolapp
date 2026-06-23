@@ -33,13 +33,18 @@ public class JwtService {
                 .compact();
     }
 
+    //server extracts email from JWT
     public String extractEmail(String token){
-        return Jwts.parser()
-                .verifyWith(getSigninKey())
-                .build()
-                .parseSignedClaims(token)
-                .getPayload()
-                .getSubject();
+        try {
+            return Jwts.parser()
+                    .verifyWith(getSigninKey())
+                    .build()
+                    .parseSignedClaims(token)
+                    .getPayload()
+                    .getSubject();
+        } catch (JwtException | IllegalArgumentException e) {
+            return null;
+        }
     }
 
     public boolean isTokenValid(String token){
@@ -49,7 +54,7 @@ public class JwtService {
                     .build()
                     .parseSignedClaims(token);
             return true;
-        } catch(JwtException e){
+        } catch(JwtException | IllegalArgumentException e){
             return false;
         }
     }

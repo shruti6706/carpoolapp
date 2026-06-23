@@ -67,7 +67,7 @@ public class RideService {
         User currentUser = getCurrentUser();
 
         Ride ride = rideRepository.findByIdWithDriver(id)
-                .orElseThrow(()-> new RuntimeException("Ride nto found"));
+                .orElseThrow(()-> new RuntimeException("Ride not found"));
 
         if(!ride.getDriver().getId().equals(currentUser.getId())){
             throw new RuntimeException("You can delete only your own rides");
