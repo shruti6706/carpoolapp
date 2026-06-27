@@ -1,6 +1,7 @@
 package com.carpoolapp.backend.service;
 
 import com.carpoolapp.backend.dto.UpdateProfileRequest;
+import com.carpoolapp.backend.dto.UserResponse;
 import com.carpoolapp.backend.entity.User;
 import com.carpoolapp.backend.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
@@ -25,12 +26,14 @@ public class UserService {
 
 
     //SO basically 1stly we'll get our profile then we'll update it
-    public User getMyProfile(){
-        return getCurrentUser();
+    public UserResponse getMyProfile(){
+
+        return UserResponse.from(getCurrentUser());
+
     }
 
     //Now we're going to update it
-    public User updateMyProfile(UpdateProfileRequest request){
+    public UserResponse updateMyProfile(UpdateProfileRequest request){
 
         User user = getCurrentUser();
 
@@ -50,7 +53,7 @@ public class UserService {
         if(request.getGender() != null)
             user.setGender(request.getGender());
 
-        return userRepository.save(user);
+        return UserResponse.from(userRepository.save(user));
     }
 
 }

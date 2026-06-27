@@ -1,6 +1,7 @@
 package com.carpoolapp.backend.controller;
 
 import com.carpoolapp.backend.dto.UpdateProfileRequest;
+import com.carpoolapp.backend.dto.UserResponse;
 import com.carpoolapp.backend.entity.User;
 import com.carpoolapp.backend.service.UserService;
 import lombok.RequiredArgsConstructor;
@@ -15,12 +16,12 @@ public class UserController {
     private final UserService userService;
 
     @GetMapping("/me")
-    public ResponseEntity<User> getMyProfile(){
+    public ResponseEntity<UserResponse> getMyProfile(){
         return ResponseEntity.ok(userService.getMyProfile());
     }
 
     @PutMapping("/me")
-    public ResponseEntity<User> updateMyProfile(
+    public ResponseEntity<UserResponse> updateMyProfile(
             @RequestBody UpdateProfileRequest request
             ){
         return ResponseEntity.ok(userService.updateMyProfile(request));
