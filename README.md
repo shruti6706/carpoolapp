@@ -1,50 +1,109 @@
-# Welcome to your Expo app 👋
+# 🚗 CarpoolApp — Smart Carpool & Safe Ride Sharing
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+A React Native mobile app built with Expo for the Smart Carpool & Safe Ride Sharing Platform.
 
-## Get started
+## Tech Stack
 
-1. Install dependencies
+- React Native (Expo SDK 54)
+- TypeScript
+- Expo Router (file-based routing)
+- Axios (API calls)
+- AsyncStorage (JWT token storage)
 
-   ```bash
-   npm install
-   ```
+## Prerequisites
 
-2. Start the app
+Before running this project, make sure you have:
 
-   ```bash
-   npx expo start
-   ```
+- [Node.js](https://nodejs.org/) v18 or higher
+- [Expo Go](https://expo.dev/go) app installed on your Android phone
+- Backend running (see backend repo instructions)
 
-In the output, you'll find options to open the app in a
+## Backend Setup
 
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
+This app requires the Spring Boot backend to be running.
 
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
-
-## Get a fresh project
-
-When you're ready, run:
-
+Clone and run the backend first:
 ```bash
-npm run reset-project
+git clone https://github.com/shruti6706/carpoolapp.git
+cd carpoolapp
+# switch to main branch for backend
+git checkout main
 ```
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
+**Option A — Run with Docker (recommended):**
+```bash
+docker-compose up --build
+```
 
-## Learn more
+**Option B — Run with IntelliJ:**
+- Open project in IntelliJ IDEA
+- Make sure PostgreSQL is running
+- Run `BackendApplication.java`
 
-To learn more about developing your project with Expo, look at the following resources:
+Backend runs on port `8080`.
 
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
+## Frontend Setup
 
-## Join the community
+**Step 1 — Clone the repo:**
+```bash
+git clone https://github.com/shruti6706/carpoolapp.git
+cd carpoolapp
+git checkout frontend
+```
 
-Join our community of developers creating universal apps.
+**Step 2 — Install dependencies:**
+```bash
+npm install
+```
 
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+**Step 3 — Configure environment:**
+
+Copy the example env file:
+```bash
+cp .env.example .env
+```
+
+Open `.env` and set your backend URL:
+
+
+If running backend with Docker:
+EXPO_PUBLIC_API_URL=http://localhost:8080
+If running backend with IntelliJ (local):
+Find your PC IP → run ipconfig (Windows) or ifconfig (Mac/Linux)
+Look for WiFi IPv4 Address
+EXPO_PUBLIC_API_URL=http://YOUR_WIFI_IP:8080
+
+**Step 4 — Start the app:**
+```bash
+npx expo start
+```
+
+**Step 5 — Open on phone:**
+- Make sure your phone and PC are on the **same WiFi network**
+- Open **Expo Go** on your Android phone
+- Scan the QR code shown in terminal
+
+## Common Issues
+
+**Registration/Login fails:**
+- Make sure backend is running on port 8080
+- Check your IP in `.env` is correct
+- Make sure phone and PC are on same WiFi
+
+**QR code not working:**
+- Make sure Expo Go is updated to latest version
+- Try restarting with `npx expo start --clear`
+
+**IP keeps changing:**
+- Update `EXPO_PUBLIC_API_URL` in `.env` with new IP
+- Run `ipconfig` (Windows) to find current IP
+
+## Features
+
+- ✅ User Authentication (Register/Login/JWT)
+- ✅ User Profile (View/Edit)
+- 🚧 Ride Management (Create/Search)
+- 🚧 Booking System (Book/Accept/Reject/Cancel)
+- 🚧 Ratings & Reviews
+- 🚧 Real-time Tracking (WebSocket)
+- 🚧 Push Notifications (FCM)

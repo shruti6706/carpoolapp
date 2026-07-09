@@ -23,8 +23,8 @@ export const register = async (
     password: string,
     gender: string,
     role: string) => {
-    const resonse = await api.post('/api/auth/register', {
+    const response = await api.post('/api/auth/register', {
         name, email, password, gender, role
     });
-    return resonse.data;
+    return response.data;
 }
