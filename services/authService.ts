@@ -1,6 +1,8 @@
 import axios from 'axios';
 import API_BASE_URL from '../constants/api';
 
+
+//No token for login and register, so we create a separate instance of axios without the interceptor
 const api = axios.create({
     baseURL: API_BASE_URL,
     headers: {
@@ -19,10 +21,10 @@ export const register = async (
     name: string,
     email: string,
     password: string,
-    phone: string,
+    gender: string,
     role: string) => {
-    const resonse = await api.post('api/auth/register', {
-        name, email, password, phone, role
+    const resonse = await api.post('/api/auth/register', {
+        name, email, password, gender, role
     });
     return resonse.data;
 }

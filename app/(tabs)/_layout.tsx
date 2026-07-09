@@ -1,19 +1,37 @@
 import { Tabs } from 'expo-router';
+import { Ionicons } from '@expo/vector-icons';
+import { Colors } from '../../constants/colors';
+
+type IoniconsName = React.ComponentProps<typeof Ionicons>['name'];
+
+type TabIconProps = {
+  name: IoniconsName;
+  color: string;
+  size: number;
+};
+
+function TabIcon({ name, color, size }: TabIconProps) {
+  return <Ionicons name={name} color={color} size={size} />;
+}
 
 export default function TabLayout() {
   return (
     <Tabs
       screenOptions={{
         headerShown: false,
-        tabBarActiveTintColor: '#1a73e8',
-        tabBarInactiveTintColor: '#999',
+        tabBarActiveTintColor: Colors.primary,
+        tabBarInactiveTintColor: Colors.textLight,
         tabBarStyle: {
-          backgroundColor: '#fff',
+          backgroundColor: Colors.white,
           borderTopWidth: 1,
-          borderTopColor: '#eee',
+          borderTopColor: Colors.border,
           paddingBottom: 8,
           paddingTop: 8,
           height: 60,
+        },
+        tabBarLabelStyle: {
+          fontSize: 11,
+          fontWeight: '600',
         },
       }}>
 
@@ -21,7 +39,9 @@ export default function TabLayout() {
         name="index"
         options={{
           title: 'Search',
-          tabBarIcon: () => <></>,
+          tabBarIcon: ({ color, size }) => (
+            <TabIcon name="search" color={color} size={size} />
+          ),
         }}
       />
 
@@ -29,7 +49,9 @@ export default function TabLayout() {
         name="bookings"
         options={{
           title: 'Bookings',
-          tabBarIcon: () => <></>,
+          tabBarIcon: ({ color, size }) => (
+            <TabIcon name="bookmark-outline" color={color} size={size} />
+          ),
         }}
       />
 
@@ -37,7 +59,9 @@ export default function TabLayout() {
         name="create-ride"
         options={{
           title: 'Create',
-          tabBarIcon: () => <></>,
+          tabBarIcon: ({ color, size }) => (
+            <TabIcon name="add-circle-outline" color={color} size={size} />
+          ),
         }}
       />
 
@@ -45,7 +69,9 @@ export default function TabLayout() {
         name="incoming"
         options={{
           title: 'Requests',
-          tabBarIcon: () => <></>,
+          tabBarIcon: ({ color, size }) => (
+            <TabIcon name="list-outline" color={color} size={size} />
+          ),
         }}
       />
 
@@ -53,7 +79,9 @@ export default function TabLayout() {
         name="profile"
         options={{
           title: 'Profile',
-          tabBarIcon: () => <></>,
+          tabBarIcon: ({ color, size }) => (
+            <TabIcon name="person-outline" color={color} size={size} />
+          ),
         }}
       />
 
